@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Start content-1 section -->
+<section class="p-4" id="Content-section">
+    <div class="container">
+        <div class="row">
+            <h6 class="Bg-primary text-white text-center py-2">Kết quả tìm kiếm</h6>
+            @foreach (var item in ViewBag.listBooks)
+            {
+
+                <div class="col-6 col-sm-4 col-md-2 p-0 mb-2 pe-2">
+                    <a href="#" class="Story-link d-block">
+                        <div class="card">
+                            <img src="~/Content/asset/img/@item.cover_image" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">@item.title</h5>
+                                <div class="d-flex justify-content-between align-items-end">
+                                    @foreach (var itemChapter in ViewBag.ListLastChapters)
+                                    {
+                                        if (itemChapter.book_id == item.book_id)
+                                        {
+                                            <p class="card-text mb-0">Chương @itemChapter.chapter_number</p>
+                                            <p class="card-text" style="font-size: .8rem;" data-created-at="@itemChapter.created_at">
+                                                @itemChapter.created_at
+                                            </p>
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+                <script>
+                    function getTimeSince(dateTime) {
+                        var now = new Date();
+                        var timeDiff = now - dateTime;
+
+                        // Chuyển đổi thời gian từ milliseconds sang giờ, phút, giây
+                        var seconds = Math.floor(timeDiff / 1000);
+                        var minutes = Math.floor(seconds / 60);
+                        var hours = Math.floor(minutes / 60);
+                        var days = Math.floor(hours / 24);
+
+                        if (days > 0) {
+                            return days + " ngày trước";
+                        } else if (hours > 0) {
+                            return hours + " giờ trước";
+                        } else if (minutes > 0) {
+                            return minutes + " phút trước";
+                        } else {
+                            return "Vừa mới đăng";
+                        }
+                    }
+
+                    // Lặp qua tất cả các phần tử và cập nhật thời gian trước đó
+                    var timeElements = document.querySelectorAll("[data-created-at]");
+                    timeElements.forEach(function (element) {
+                        var createdDate = new Date(element.dataset.createdAt);
+                        element.innerText = getTimeSince(createdDate);
+                    });
+                </script>
+            }
+
+            <div class="row">
+                <nav aria-label="..." class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End content-1 section -->

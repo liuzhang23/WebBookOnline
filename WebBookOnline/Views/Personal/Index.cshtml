@@ -1,0 +1,179 @@
+﻿
+@model WebBookOnline.Models.Chapter
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<!-- Start personal page section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                 aria-orientation="vertical">
+                <button class="nav-link active" id="v-pills-personalpage-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-personalpage" type="button" role="tab"
+                        aria-controls="v-pills-personalpage" aria-selected="true">
+                    Trang cá nhân
+                </button>
+                <button class="nav-link" id="v-pills-mybook-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-mybook" type="button" role="tab" aria-controls="v-pills-mybook"
+                        aria-selected="false">
+                    Truyện của tôi
+                </button>
+                <button class="nav-link" id="v-pills-poststories-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-poststories" type="button" role="tab" aria-controls="v-pills-poststories"
+                        aria-selected="true">
+                    Đăng truyện
+                </button>
+                <button class="nav-link" id="v-pills-postchapter-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-postchapter" type="button" role="tab" aria-controls="v-pills-postchapter"
+                        aria-selected="false">
+                    Đăng chương
+                </button>
+
+            </div>
+            <div class="col-9 tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-personalpage" role="tabpanel"
+                     aria-labelledby="v-pills-personalpage-tab" tabindex="0">Trang cá nhân</div>
+                <div class="tab-pane fade" id="v-pills-mybook" role="tabpanel"
+                     aria-labelledby="v-pills-mybook-tab" tabindex="0">Truyện của tôi</div>
+
+                <!-- Start layout đăng truyện -->
+                <div class="tab-pane fade show" id="v-pills-poststories" role="tabpanel" aria-labelledby="v-pills-poststories-tab"
+                     tabindex="0">
+                    <form action="/Personal/CreateBook" method="post">
+                        <input name="__RequestVerificationToken" type="hidden"
+                               value="0XBteW0MBvilJUobDxXZk6lb7UZLHfIw5pguD1o-FuDmrKCsvyRAkTGAgnc6aX85cumHAOWwAqIadgOsPGIUA3bKFQVjZVlqY5i6zjSOpGs1">
+                        <div class="form-horizontal container-fluid">
+
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="title">Tên truyện</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="title" name="title" type="text" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="title"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="author">Tác giả</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="author" name="author" type="text" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="author"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="description">Mô tả</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="description" name="description" type="text"
+                                           value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="description"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="cover_image">Ảnh bìa</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="cover_image" name="cover_image" type="file"
+                                           value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="cover_image"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Đăng truyện" class="btn btn-success">
+                                    <input type="reset" value="Làm lại" class="btn btn-warning">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- End layout đăng truyện -->
+                <!-- Start layout đăng chương -->
+
+
+
+                <div class="tab-pane fade" id="v-pills-postchapter" role="tabpanel"
+                     aria-labelledby="v-pills-postchapter-tab" tabindex="0">
+                    <form action="/Personal/CreateChapter" method="post">
+                        <input name="__RequestVerificationToken" type="hidden"
+                               value="YeFwCYqRg5LU0ySjSK-W38w5axYiGVUf_AcdyTKEZGI9MKEs487Q6Hxnh5RlsGit-WzFpQC2VzUvYxxyGOCK9atzpWZJZRmwmIbCEBDi3tQ1">
+                        <div class="form-horizontal">
+
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="book_id">Chọn truyện</label>
+                                <div class="col-md-10">
+                                    <select class="form-control" id="book_id" name="book_id">
+                                        @foreach (var item in ViewBag.books)
+                                        {
+                                            <option value="@item.book_id">@item.title</option>
+                                        }
+                                        @*<option value="1">Book 1</option>
+                                            <option value="2">Book 2</option>
+                                            <option value="3">Book 3</option>
+                                            <option value="4">b4</option>
+                                            <option value="5">b5</option>*@
+                                    </select>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="book_id"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="chapter_number">Chương</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" data-val="true"
+                                           data-val-number="The field chapter_number must be a number." id="chapter_number"
+                                           name="chapter_number" type="number" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="chapter_number"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="title">Tên chương</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="title" name="title" type="text" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="title"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group my-3">
+                                <label class="control-label col-md-2" for="content">Nội dung</label>
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+
+                                    @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+                                    <script>
+                                            CKEDITOR.replace("content");
+                                    </script>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group my-3">
+                                <div class="col-md-offset-2 col-md-10 mt-3">
+                                    <input type="submit" value="Đăng chương" class="btn btn-success">
+                                    <input type="reset" value="Làm lại" class="btn btn-warning">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- End layout đăng chương -->
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End personal page section -->

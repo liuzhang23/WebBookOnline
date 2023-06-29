@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Start content-1 section -->
+<section class="p-4" id="Content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 ps-0">
+                <h6 class="Bg-primary text-white text-center py-2">Thông tin truyện</h6>
+                <article id="item-detail">
+                    <h1 class="title-detail">@Model.title </h1>
+                    <div class="detail-info">
+                        <div class="row">
+                            <div class="col-sm-4 col-image">
+                                <img src="~/Content/asset/img/@Model.cover_image" alt="@Model.title" class="img-fluid">
+                            </div>
+                            <div class="col-sm-8 col-info">
+                                <ul class="list-info">
+                                    <li class="author row my-3">
+                                        <p class="name col-sm-4">
+                                            <i class="fa fa-user">
+                                            </i> Tác giả
+                                        </p>
+                                        <p class="col-sm-8">@Model.author</p>
+                                    </li>
+                                    <li class="kind row my-3">
+                                        <p class="name col-sm-4">
+                                            <i class="fa fa-tags">
+                                            </i> Thể loại
+                                        </p>
+                                        <p class="col-sm-8">
+                                            <a href="https://www.nettruyenmax.com/tim-truyen/fantasy-1050">Fantasy</a> -
+                                            @*@foreach (var itemCategories in ViewBag.listCategories)
+                                                {
+                                                    <p class="col-sm-8"><a href="https://www.nettruyenmax.com/tim-truyen/fantasy-1050">Fantasy</a> -
+                                                }*@
+                                    </li>
+                                    <li class="row my-3">
+                                        <p class="name col-sm-4">
+                                            <i class="fa fa-eye">
+                                            </i> Lượt xem
+                                        </p>
+                                        <p class="col-sm-8">@Model.view_count</p>
+                                    </li>
+                                </ul>
+
+
+                                <div class="follow my-1">
+                                    <a class="follow-link btn btn-success" href="javascript:void(0)" data-id="73596"><i class="fa fa-heart"></i> <span>Theo dõi</span></a>
+                                    <span>
+                                        <b>@Model.favorite_count</b> Lượt theo dõi
+                                    </span>
+                                </div>
+                                <div class="read-action mrt10">
+                                    <a class="btn btn-warning mrb5" href="/Home/Reading/@ViewBag.FirstChapter.chapter_id"> Đọc từ đầu</a>
+                                    <a class="btn btn-warning mrb5" href="/Home/Reading/@ViewBag.LastChapter.chapter_id"> Đọc mới nhất</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-content my-3">
+                        <h3 class="list-title">
+                            <i class="fa fa-file-text-o">
+                            </i> Nội dung
+                        </h3>
+                        <p class="">
+                            @Model.description
+                        </p>
+                    </div>
+                    <div class="list-chapter" id="nt_listchapter">
+                        <h2 class="list-title clearfix">
+                            <i class="fa fa-list">
+                            </i> Danh sách chương
+                        </h2>
+                        <div class="row heading">
+                            <div class="col-sm-5 no-wrap">Số chương</div>
+                            <div class="col-sm-4 no-wrap text-center">Cập nhật</div>
+                            <div class="col-sm-3 no-wrap text-center">Lượt xem</div>
+                        </div>
+                        <nav>
+                            <ul>
+                                @foreach (var chapter in ViewBag.listChapters)
+                                {
+                                    <li class="row">
+                                        <div class="col-sm-5 chapter">
+                                            <a href="/Home/Reading/@chapter.chapter_id" data-id="1017413">Chapter @chapter.chapter_number</a>
+                                        </div>
+                                        <div class="col-sm-4 text-center no-wrap small" data-created-at="@chapter.created_at">@chapter.created_at</div>
+                                        <div class="col-sm-3 text-center small">@chapter.view</div>
+                                    </li>
+                                    <script>
+                                        function getTimeSince(dateTime) {
+                                            var now = new Date();
+                                            var timeDiff = now - dateTime;
+
+                                            // Chuyển đổi thời gian từ milliseconds sang giờ, phút, giây
+                                            var seconds = Math.floor(timeDiff / 1000);
+                                            var minutes = Math.floor(seconds / 60);
+                                            var hours = Math.floor(minutes / 60);
+                                            var days = Math.floor(hours / 24);
+
+                                            if (days > 0) {
+                                                return days + " ngày trước";
+                                            } else if (hours > 0) {
+                                                return hours + " giờ trước";
+                                            } else if (minutes > 0) {
+                                                return minutes + " phút trước";
+                                            } else {
+                                                return "Vừa mới đăng";
+                                            }
+                                        }
+
+                                        // Lặp qua tất cả các phần tử và cập nhật thời gian trước đó
+                                        var timeElements = document.querySelectorAll("[data-created-at]");
+                                        timeElements.forEach(function (element) {
+                                            var createdDate = new Date(element.dataset.createdAt);
+                                            element.innerText = getTimeSince(createdDate);
+                                        });
+                                    </script>
+                                }
+
+
+                            </ul>
+                            <a class="hidden view-more" href="#">
+                                <i class="fa fa-plus">
+                                </i> Xem thêm
+                            </a>
+                        </nav>
+                    </div>
+                </article>
+
+                @*<div class="comment-wrapper">
+                        <div id="comment_form">
+                            <input type="text" />
+                            <button>Đánh giá</button>
+                        </div>
+                        <div class="mrt10 mrb5">
+                            <span class="sort-comments comment-action"><i class="icons"></i>Mới nhất</span>
+                        </div>
+                        <div class="comment-list">
+                            <div class="item clearfix" id="comment_30489736">
+                                <figure class="avatar">
+                                    <img src="//st.nettruyenmax.com/data/sites/1/useravatars/541576.jpg?v=5271" alt="Củ Cải" class="lazy"
+                                         data-original="//st.nettruyenmax.com/data/sites/1/useravatars/541576.jpg?v=5271">
+                                </figure>
+                                <div class="summary">
+                                    <i class="fa fa-angle-left fa-arrow">
+                                    </i>
+                                    <div class="info">
+                                        <div class="comment-header">
+                                            <span class="authorname name-5">Củ Cải</span>
+                                            <span class="member level-5">
+                                                <span data-level="5">Cấp 5</span>
+                                                <span class="progress-bar" style="width:2%">
+                                                </span>
+                                            </span>
+                                            <span class="cmchapter">Chapter 38</span>
+                                        </div>
+                                        <div class="comment-content">
+                                            <img class="lazy"
+                                                 src="//p.ntcdntempv26.com/content/image.jpg?url=http://4.bp.blogspot.com/_1Jw2fzSntT0/TZDLBaIXsvI/AAAAAAAABP0/XkM6uiRYdDM/w1600/004.gif"
+                                                 data-original="//p.ntcdntempv26.com/content/image.jpg?url=http://4.bp.blogspot.com/_1Jw2fzSntT0/TZDLBaIXsvI/AAAAAAAABP0/XkM6uiRYdDM/w1600/004.gif"
+                                                 alt="emo">&nbsp;Tao là florentino
+                                        </div>
+                                    </div>
+                                    <ul class="comment-footer">
+                                        <li>
+                                            <span onclick="replyComment(30489736)">
+                                                <i class="fa fa-comment">
+                                                </i> Trả lời
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="vote-up" onclick="voteComment(30489736, 1, this)">
+                                                <i class="fa fa-thumbs-up">
+                                                </i>
+                                                <span class="vote-up-count">0</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="vote-down" onclick="voteComment(30489736, 0, this)">
+                                                <i class="fa fa-thumbs-down">
+                                                </i>
+                                                <span class="vote-down-count">0</span>
+                                            </span>
+                                        </li>
+                                        <li class="comment-more-wrap">
+                                            <span class="more-action" onclick="openCommentAction(30489736)">
+                                                <i class="fa fa-ellipsis-h">
+                                                </i>
+                                            </span>
+                                            <ul class="comment-more hidden" id="comment_more_30489736">
+                                                <li>
+                                                    <span onclick="reportComment(this,30489736)">Báo vi phạm</span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <abbr title="27/06/2023 12:22:20 CH">
+                                                <i class="fa fa-clock-o">
+                                                </i> 1 phút trước
+                                            </abbr>
+                                        </li>
+                                    </ul>
+                                    <div id="comment_form_30489736">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ctl00_mainContent_divPager" class="pagination-outter commentpager">
+                            <ul class="pagination">
+                                <li class="hidden">Trang 1 / 110 </li>
+                                <li class="active"><a href="#1" title="Đang hiện kết quả 1 tới 15 / 1646">1</a> </li>
+                                <li><a href="#2" title="Hiện kết quả 16 tới 30 / 1646">2</a> </li>
+                                <li><a href="#3" title="Hiện kết quả 31 tới 45 / 1646">3</a> </li>
+                                <li><a href="#4" title="Hiện kết quả 46 tới 60 / 1646">4</a> </li>
+                                <li><a href="#5" title="Hiện kết quả 61 tới 75 / 1646">5</a> </li>
+                                <li><a href="#6" title="Hiện kết quả 76 tới 90 / 1646">6</a> </li>
+                                <li><a href="#7" title="Hiện kết quả 91 tới 105 / 1646">7</a> </li>
+                                <li><a href="#8" title="Hiện kết quả 106 tới 120 / 1646">8</a> </li>
+                                <li class="PagerSSCCells"><a href="#40" title="Hiện kết quả 586 tới 600 / 1646">40</a> </li>
+                                <li class="PagerSSCCells"><a href="#70" title="Hiện kết quả 1036 tới 1050 / 1646">70</a> </li>
+                                <li><a href="#2" title="Chuyển đến trang 2">›</a> </li>
+                                <li><a href="#110" title="Trang cuối">»</a> </li>
+                            </ul>
+                        </div>
+                    </div>*@
+
+            </div>
+            @{
+                Html.RenderPartial("ContentRightView");
+            }
+        </div>
+    </div>
+</section>
+<!-- End content-1 section -->

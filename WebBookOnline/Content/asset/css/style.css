@@ -1,0 +1,107 @@
+:root {
+    --primaty-color: #2798A1;
+    --hover-color: #ed4259;
+    --hover-color-two: #077c86;
+    --text-white: #fff;
+    --bg-list: #f7f6f2;
+    
+}
+
+html a {
+    color: #000;
+    text-decoration: none;
+}
+
+html p {
+    margin-bottom: 0;
+}
+
+
+
+.Bg-primary {
+    background-color: var(--primaty-color);
+}
+
+.Bg-primary-hover {
+    background-color: var(--hover-color-two);
+}
+
+.Bg-hover:hover {
+    color: var(--text-white) !important;
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+.Input-search {
+    box-shadow: none !important;
+}
+
+.Btn-search {
+    border-radius: 0 !important;
+}
+
+section.Navbar-section a,
+section.Navbar-section a * {
+    text-decoration: none;
+}
+
+.Navbar-section .dropdown-menu {
+    border-radius: 0;
+}
+
+.Navbar-section .Category-link {
+}
+
+.Navbar-section .Category-link:hover {
+    color: var(--hover-color) !important;
+}
+
+.Navbar-section .nav-link:hover {
+    background-color: var(--hover-color-two);
+}
+
+#Slider-section .News-link:hover {
+    color: var(--hover-color);
+}
+
+#Slider-section .Top-ranking-link:hover {
+    text-shadow: 4px 4px 4px var(--primaty-color);
+    box-shadow: 0 0 10px var(--primaty-color);
+    border-radius: 4px;
+}
+
+#Content-section .Story-link {
+    
+}
+
+#Content-section .Story-link:hover {
+    color: var(--primaty-color);
+    box-shadow: 0 0 4px var(--primaty-color);
+    border-radius: 4px;
+}
+
+#Content-section .Story-link img{
+    
+}
+
+#Content-section .Trend-content {
+    border: solid var(--primaty-color) 1px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#Content-section .Comment {
+    border: solid var(--primaty-color) 1px;
+}
+
+@media (min-width: 768px) {
+    #Logo-section .Logo {
+        width: 75% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    #Logo-section .Logo {
+        width: 50% !important;
+    }
+}

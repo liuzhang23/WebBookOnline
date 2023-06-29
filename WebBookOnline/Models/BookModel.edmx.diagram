@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e74d3ae99ef547ef96d1bf5a436e7a69" Name="Diagram1">
+        <EntityTypeShape EntityType="BookReadingDataBaseModel.Book" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookReadingDataBaseModel.Category" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookReadingDataBaseModel.Chapter" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookReadingDataBaseModel.Comment" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookReadingDataBaseModel.Favorite" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookReadingDataBaseModel.Review" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookReadingDataBaseModel.User" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK__Chapters__book_i__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK__Favorites__book___52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK__Reviews__book_id__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK_Books_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK__Comments__chapte__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK__Comments__user_i__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK__Favorites__user___534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.FK__Reviews__user_id__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="BookReadingDataBaseModel.BookCategory" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

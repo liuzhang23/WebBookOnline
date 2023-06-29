@@ -1,0 +1,273 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Content/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/asset/font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/asset/css/style.css">
+    <script src="~/Content/asset/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+    <!-- Start logo section-->
+    <section class="py-3" id="Logo-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 col-sm-8">
+                    <a href="/Home/index">
+                        <img src="~/Content/asset/img/logoWeb.png" alt="" class="Logo img-fluid w-50">
+                    </a>
+                </div>
+
+                <div class="col-md-4 d-sm-none d-md-block">
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline" }))
+                    {
+                        <div class="form-group d-flex">
+                            <input type="text" class="form-control Input-search" value="@ViewBag.Keyword" name="searchString" placeholder="Search" autocomplete="off" style=" border-radius: 0;" />
+                            <button type="submit" class="btn Bg-primary text-white Bg-hover Btn-search">Search</button>
+                        </div>
+                    }
+                </div>
+
+                <div class="col-md-4 col-sm-4 d-flex justify-content-end">
+                    <a href="" class="ms-auto text-black text-decoration-none border p-2 Bg-hover" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Tài khoản</a>
+                    <a href="/Personal/Index" class="ms-auto text-black text-decoration-none border p-2 Bg-hover">Trang cá nhân</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End logo section -->
+    <!-- Start Navbar section -->
+    <section class="Bg-primary Navbar-section">
+        <div class="container-lg container-fluid">
+
+            <div class="row align-items-center">
+                <div class="col-lg-3 Bg-primary-hover px-0">
+                    <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle text-white py-2" data-bs-toggle="dropdown">
+                            Thể loại
+                        </button>
+                        <div class="dropdown-menu w-100 py-0">
+                            <!--d-lg-block-->
+                            <table class="table bg-light table-striped mb-0">
+                                <tbody>
+                                    @{
+                                        if (12 <= ViewBag.listCategories.Count) // listCategories.Count lớn hơn hoặc bằng 14
+                                        {
+                                            int l = 0;
+                                            for (int i = 0; i < 6; i++)
+                                            {
+                                                <tr>
+                                                    <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">@ViewBag.listCategories[l].name</a></td>
+                                                    @if (l + 1 >= 11)
+                                                    {
+                                                        <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">Tất cả</a></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">@ViewBag.listCategories[l + 1].name</a></td>
+                                                    }
+                                                </tr>
+                                                l += 2;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            for (int i = 0; i < ViewBag.listCategories.Count; i += 2)
+                                            {
+                                                if (ViewBag.listCategories.Count % 2 == 0)
+                                                {
+                                                    <tr>
+                                                        <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">@ViewBag.listCategories[i].name</a></td>
+                                                        @if (i + 1 < ViewBag.listCategories.Count)
+                                                        {
+                                                            <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">@ViewBag.listCategories[i + 1].name</a></td>
+                                                        }
+                                                    </tr>
+                                                    if (i + 1 == ViewBag.listCategories.Count - 1)
+                                                    {
+                                                        <tr>
+                                                            <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">Tất cả</a></td>
+                                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">@ViewBag.listCategories[i].name</a></td>
+                                                        @if (i + 1 < ViewBag.listCategories.Count)
+                                                        {
+                                                            <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">@ViewBag.listCategories[i + 1].name</a></td>
+                                                        }
+                                                        @if (i == ViewBag.listCategories.Count - 1)
+                                                        {
+                                                            <td class="p-0"><a href="#" class="d-block w-100 p-2 p py-3 Category-link">Tất cả</a></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-10">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="#">Diễn đàn</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">bảng xếp hạng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Bộ lọc</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Review</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Cửa hàng</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-1 col-md-2">
+                    <a href="#" class="text-white">Tải app</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End navbar section -->
+
+    @RenderBody()
+
+    <section id="footer_section">
+
+        <footer class="bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-3 p-3">
+                        <img src="~/Content/asset/img/logoWeb.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="d-sm-none col-md-1"></div>
+                    <div class="col-sm-7 col-md-8">
+                        <p>© 2007 Tàng Thư Viện - Chính sách</p>
+                        <p>Tàng Thư Viện là sân chơi mở và free cho cộng đồng fan kiếm hiệp, tiên hiệp, ngôn tình. Chúc các bạn có những giây phút thư giãn thoải mái sau giờ làm việc và học tập căng thẳng.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+        <!-- Start footer bottom -->
+        <footer class="p-3 bg-dark text-white text-center position-relative Footer">
+            <div class="container">
+                <p class="mb-0">
+                    Copyright © 2023 TangThuVien
+                </p>
+                <a href="#" class="position-absolute bottom-0 end-0 p-5">
+                    <i class="bi bi-arrow-up-circle h1"></i>
+                    Lên
+                </a>
+            </div>
+        </footer>
+        <!-- End footer bottom -->
+    </section>
+    <!-- Start footer -->
+    <!-- Start modal Account -->
+
+    <section>
+        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+             tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Đăng nhập</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="staticEmail" class="col-form-label">Email</label>
+                            <div class="">
+                                <input type="text" class="form-control" id="staticEmail" value="">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="col-form-label">Mật khẩu</label>
+                            <div class="">
+                                <input type="password" class="form-control" id="inputPassword">
+                            </div>
+                        </div>
+                        <p>Bạn chưa có tài khoản? <a href="" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Đăng ký</a> </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary">Đăng nhập</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="/Users/Create" method="post">
+            <input name="__RequestVerificationToken" type="hidden" value="RzYS3jrxrQDxxyR0u4jcAKbO4wpNd2w8qqUIBCzBYya-OdugDLsS_fpd82zaihwDYSmmyxyyDUi1iN9SbAVc3so01p9vTal2xgcN45-S5w01">
+            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+                 tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Đăng ký</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="col-form-label" for="username">Tên đăng nhập</label>
+                                <div class="">
+                                    <input class="form-control" id="username" name="username" type="text" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="username" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label" for="password">Mật khẩu</label>
+                                <div class="">
+                                    <input class="form-control" id="password" name="password" type="text" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="password" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label" for="repassword">Nhập lại mật khẩu</label>
+                                <div class="">
+                                    <input class="form-control" id="repassword" name="repassword" type="text" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="repassword" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label" for="email">E-mail</label>
+                                <div class="">
+                                    <input class="form-control" id="email" name="email" type="text" value="">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <p>Bạn đã có tài khoản? <a href="" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Đăng nhập</a> </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"<a href="" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Đăng ký</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- End modal Account -->
+
+    <script src="~/Content/asset/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
