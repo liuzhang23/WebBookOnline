@@ -16,6 +16,7 @@ namespace WebBookOnline.Controllers
         // GET: Home
         public ActionResult Index(int ? page)
         {
+            var a = 0;
             ViewBag.listCategories = db.Categories.ToList();
             ViewBag.listBooks = db.Books.ToList();
             ViewBag.listChapters = db.Chapters.ToList();

@@ -11,8 +11,7 @@ namespace WebBookOnline.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
-
+    
     public partial class Chapter
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +24,6 @@ namespace WebBookOnline.Models
         public Nullable<int> book_id { get; set; }
         public Nullable<int> chapter_number { get; set; }
         public string title { get; set; }
-        [AllowHtml]
         public string content { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<int> view { get; set; }

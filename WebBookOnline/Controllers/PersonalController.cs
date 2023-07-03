@@ -28,7 +28,7 @@ namespace WebBookOnline.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult CreateBook([Bind(Include = "book_id,title,author,description,cover_image,chapter_count,view_count,favorite_count,comment_count,created_at,time_update, user_id")] Book book)
         {
             if (ModelState.IsValid)
